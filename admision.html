@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admisión 2026 - I.E.P. San Ignacio de Loyola</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <h1>I.E.P. SAN IGNACIO DE LOYOLA</h1>
+            <span>Sicuani - Canchis</span>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="admision.html">Admisión</a>
+            <a href="noticias.html">Noticias</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="login.php" class="btn-acceso">Intranet / Login</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-box">
+            <h2 style="color: #1a365d; text-align: center; margin-bottom: 20px;">Solicitud de Vacante y Admisión</h2>
+            <form action="#" method="POST" onsubmit="alert('Solicitud enviada correctamente. La secretaría se comunicará a la brevedad.'); return false;">
+                <div class="form-group">
+                    <label>Nombre Completo del Apoderado:</label>
+                    <input type="text" required placeholder="Ej. Juan Carlos Quispe">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico:</label>
+                    <input type="email" required placeholder="correo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono de Contacto:</label>
+                    <input type="text" required placeholder="Ej. 984123456">
+                </div>
+                <div class="form-group">
+                    <label>Nivel de Postulación:</label>
+                    <select required>
+                        <option value="">Seleccione el nivel...</option>
+                        <option value="Inicial">Inicial</option>
+                        <option value="Primaria">Primaria</option>
+                        <option value="Secundaria">Secundaria</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Grado al que postula:</label>
+                    <input type="text" required placeholder="Ej. 1° de Primaria">
+                </div>
+                <div class="form-group">
+                    <label>Mensaje o Consulta:</label>
+                    <textarea rows="4" placeholder="Indique si procede de otro colegio o requiere información adicional"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Enviar Solicitud de Vacante</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 I.E.P. San Ignacio de Loyola - Sicuani.</p>
+    </footer>
+</body>
+</html>
