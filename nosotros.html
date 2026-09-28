@@ -4,53 +4,603 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosotros - I.E.P. San Ignacio de Loyola</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        :root {
+            --primary: #0f2d59;
+            --primary-dark: #0a1f3d;
+            --primary-light: #2b6cb0;
+            --accent-red: #c53030;
+            --accent-red-hover: #9b2c2c;
+            --accent-gold: #d69e2e;
+            --bg: #f4f6f9;
+            --surface: #ffffff;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Franja informativa superior */
+        .top-info-bar {
+            background-color: var(--primary-dark);
+            color: #cbd5e0;
+            padding: 0.45rem 1.5rem;
+            font-size: 0.82rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .top-info-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-info-container span {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        /* Encabezado Oficial */
+        .main-header {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-bottom: 4px solid var(--accent-red);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-box h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .brand-box p {
+            font-size: 0.8rem;
+            color: #cbd5e0;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #63b3ed;
+        }
+
+        .btn-intranet {
+            background-color: var(--accent-red) !important;
+            color: #ffffff !important;
+            padding: 0.55rem 1.3rem;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+
+        .btn-intranet:hover {
+            background-color: var(--accent-red-hover) !important;
+        }
+
+        /* Encabezado de Página (Hero Interior) */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .page-banner h2 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+        }
+
+        .page-banner p {
+            color: #cbd5e0;
+            font-size: 1.05rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Contenedor General */
+        .container {
+            max-width: 1200px;
+            margin: 3.5rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header h3 {
+            font-size: 1.9rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* Tarjeta de Reseña Histórica */
+        .history-card {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            border-top: 5px solid var(--primary);
+            margin-bottom: 3.5rem;
+        }
+
+        .history-card h3 {
+            font-size: 1.45rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 0.5rem;
+        }
+
+        .history-card p {
+            font-size: 0.98rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .history-badge {
+            display: inline-block;
+            background: #ebf8ff;
+            color: var(--primary-light);
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: 1px solid #bee3f8;
+            margin-top: 0.5rem;
+        }
+
+        /* Misión y Visión en Grid */
+        .grid-mv {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .card-mv {
+            background: var(--surface);
+            padding: 2.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            border-left: 5px solid var(--accent-gold);
+        }
+
+        .card-mv h4 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card-mv p {
+            font-size: 0.96rem;
+            line-height: 1.7;
+            color: var(--text-dark);
+        }
+
+        /* Cartel de Valores */
+        .grid-valores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .card-valor {
+            background: var(--surface);
+            padding: 1.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--primary-light);
+            transition: transform 0.2s;
+        }
+
+        .card-valor:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-valor h5 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .card-valor p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Perfil del Egresado y Metodología */
+        .grid-perfiles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .box-perfil {
+            background: #ffffff;
+            padding: 2.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .box-perfil h4 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 0.5rem;
+        }
+
+        .box-perfil ul {
+            padding-left: 1.2rem;
+            line-height: 1.8;
+            font-size: 0.93rem;
+            color: var(--text-dark);
+        }
+
+        /* Banner de Infraestructura */
+        .infra-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            padding: 3rem 2.5rem;
+            border-radius: 14px;
+            margin-bottom: 2rem;
+        }
+
+        .infra-banner h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-gold);
+        }
+
+        .infra-banner p {
+            color: #cbd5e0;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .infra-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .infra-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+
+        /* Pie de Página */
+        footer {
+            background-color: var(--primary-dark);
+            color: #cbd5e0;
+            padding: 3.5rem 1.5rem 1.5rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--accent-red);
+            display: inline-block;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-col a {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #ffffff;
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        @media (max-width: 860px) {
+            .top-info-container {
+                flex-direction: column;
+                gap: 0.3rem;
+                text-align: center;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .grid-mv, .grid-perfiles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="brand">
-            <h1>I.E.P. SAN IGNACIO DE LOYOLA</h1>
-            <span>Sicuani - Canchis</span>
-        </div>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="admision.html">Admisión</a>
-            <a href="noticias.html">Noticias</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="login.php" class="btn-acceso">Intranet / Login</a>
-        </nav>
-    </header>
 
-    <div class="container">
-        <div class="card" style="margin-bottom: 25px;">
-            <h3>Reseña Histórica</h3>
-            <p>La Institución Educativa Privada "San Ignacio de Loyola", autorizada mediante resolución USE-C-N° 214-2002, es un referente educativo en la provincia de Canchis que imparte los niveles de Inicial, Primaria y Secundaria orientados al éxito académico y formativo.</p>
-        </div>
-
-        <div class="grid-3">
-            <div class="card">
-                <h3>Misión</h3>
-                <p>Brindar una educación integral y personalizada que potencie el talento científico, humanista y tecnológico de los estudiantes de Sicuani.</p>
-            </div>
-            <div class="card">
-                <h3>Visión</h3>
-                <p>Ser reconocidos como la institución líder del sur del Perú por su excelencia pedagógica, espíritu innovador y formación en valores.</p>
-            </div>
-            <div class="card">
-                <h3>Valores Institucionales</h3>
-                <ul style="padding-left: 20px;">
-                    <li>Responsabilidad</li>
-                    <li>Respeto mutuo</li>
-                    <li>Solidaridad</li>
-                    <li>Laboriosidad y Disciplina</li>
-                </ul>
-            </div>
+    <!-- Franja de contacto rápido -->
+    <div class="top-info-bar">
+        <div class="top-info-container">
+            <span>📍 Canchis, Sicuani - Cusco | R.D. USE-C-N° 214-2002</span>
+            <span>📞 Central Telefónica: (084) 351234 / 984 123 456</span>
+            <span>⏰ Atención: Lun - Vie 8:00 AM - 2:00 PM</span>
         </div>
     </div>
 
+    <!-- Encabezado Institucional -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-box">
+                <h1>I.E.P. SAN IGNACIO DE LOYOLA</h1>
+                <p>Sicuani - Canchis | Formación Integral de Excelencia</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html" class="active">Nosotros</a></li>
+                <li><a href="admision.html">Admisión</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.php" class="btn-intranet">Intranet / Login</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Banner Superior -->
+    <section class="page-banner">
+        <h2>Identidad y Vocación Educativa</h2>
+        <p>Conozca la trayectoria, los valores éticos y el compromiso pedagógico que sustentan la excelencia de nuestra comunidad escolar ignaciana.</p>
+    </section>
+
+    <main class="container">
+        <!-- Reseña Histórica -->
+        <article class="history-card">
+            <h3>Nuestra Reseña Histórica</h3>
+            <p>
+                La <strong>Institución Educativa Particular "San Ignacio de Loyola"</strong> de la ciudad de Sicuani nació con el firme propósito de democratizar una educación privada con altos estándares de exigencia académica, científica y formación humanística en la provincia de Canchis.
+            </p>
+            <p>
+                Iniciamos formalmente nuestras labores educativas autorizados por la Dirección de Educación mediante la <strong>Resolución Directoral USE-C-N° 214-2002</strong>. A lo largo de más de dos décadas de vida institucional ininterrumpida, hemos consolidado una propuesta pedagógica que combina el rigor de las ciencias básicas con el fomento del arte, la disciplina y el liderazgo cívico.
+            </p>
+            <p>
+                Hoy en día, nuestros egresados ocupan puestos de liderazgo e integran con éxito las principales universidades del Perú, ratificando el prestigio ganado por el esfuerzo conjunto de directivos, docentes y familias asociadas al plantel.
+            </p>
+            <span class="history-badge">📜 Autorización Oficial: Resolución USE-C-N° 214-2002 | Sicuani - Canchis</span>
+        </article>
+
+        <!-- Misión y Visión -->
+        <div class="section-header">
+            <h3>Horizonte Estratégico</h3>
+            <p>Nuestra ruta de formación integral orientada al futuro del estudiante y su entorno</p>
+        </div>
+
+        <section class="grid-mv">
+            <div class="card-mv">
+                <h4>Misión Institucional</h4>
+                <p>
+                    Brindar una formación escolar integral y de alta calidad a niños y adolescentes en los niveles Inicial, Primaria y Secundaria, a través de una pedagogía centrada en competencias, el pensamiento crítico, la investigación experimental y el cultivo de sólidos principios éticos inspirados en el carisma ignaciano, capacitándolos para ser agentes de transformación positiva en su sociedad.
+                </p>
+            </div>
+
+            <div class="card-mv">
+                <h4>Visión Institucional</h4>
+                <p>
+                    Consolidarnos al 2030 como la institución educativa líder y referente pedagógico de la región Cusco, reconocida por su excelencia académica, destacados resultados en concursos científicos y preuniversitarios, infraestructura moderna y por formar ciudadanos íntegros, autónomos y comprometidos con el desarrollo sostenible de su país.
+                </p>
+            </div>
+        </section>
+
+        <!-- Valores Fundamentales -->
+        <div class="section-header">
+            <h3>Valores Ignacianos</h3>
+            <p>Principios transversales que orientan el comportamiento, estudio y convivencia de nuestros alumnos</p>
+        </div>
+
+        <section class="grid-valores">
+            <div class="card-valor">
+                <h5>Disciplina y Autonomía</h5>
+                <p>Promovemos el orden consciente, la constancia, la puntualidad y la responsabilidad formativa en cada tarea asumida.</p>
+            </div>
+
+            <div class="card-valor">
+                <h5>Magis (Superación Continua)</h5>
+                <p>Inculcamos el deseo incansable de ofrecer siempre lo mejor en los ámbitos intelectual, artístico y personal.</p>
+            </div>
+
+            <div class="card-valor">
+                <h5>Solidaridad Activa</h5>
+                <p>Educamos para el servicio a los demás, la empatía con las necesidades del entorno y el trabajo fraterno en comunidad.</p>
+            </div>
+
+            <div class="card-valor">
+                <h5>Integridad y Honestidad</h5>
+                <p>Cultivamos la transparencia, el respeto irrestricto por la verdad y la coherencia moral en todos los actos cotidianos.</p>
+            </div>
+        </section>
+
+        <!-- Perfiles y Propuesta -->
+        <div class="section-header">
+            <h3>Modelo Pedagógico y Perfil del Egresado</h3>
+            <p>Competencias clave desarrolladas durante toda la trayectoria escolar del alumno</p>
+        </div>
+
+        <section class="grid-perfiles">
+            <div class="box-perfil">
+                <h4>Enfoque Metodológico</h4>
+                <ul>
+                    <li><strong>Aprendizaje Significativo:</strong> Vinculamos los conocimientos teóricos con situaciones reales de la vida cotidiana.</li>
+                    <li><strong>Ciencias y Razonamiento:</strong> Énfasis sostenido en matemática pura, resolución lógica y métodos de laboratorio.</li>
+                    <li><strong>Competencia Comunicativa:</strong> Lectura analítica, argumentación oratoria, debates escolares y redacción académica.</li>
+                    <li><strong>Tecnología Responsable:</strong> Manejo de herramientas digitales orientadas a la investigación y el desarrollo colaborativo.</li>
+                </ul>
+            </div>
+
+            <div class="box-perfil">
+                <h4>Perfil del Egresado Sanignaciano</h4>
+                <ul>
+                    <li>Posee una base académica sólida para ingresar y sobresalir en la educación universitaria o técnica superior.</li>
+                    <li>Demuestra juicio crítico reflexivo, ética intachable y capacidad para liderar proyectos con impacto colectivo.</li>
+                    <li>Muestra dominio en resolución de problemas complejos y adaptación ante escenarios tecnológicos dinámicos.</li>
+                    <li>Actúa con sensibilidad social y amor por su identidad cultural andina y valores cívico-patrióticos.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Banner de Infraestructura -->
+        <section class="infra-banner">
+            <h4>Infraestructura y Ambientes de Aprendizaje</h4>
+            <p>
+                Nuestra sede institucional en Sicuani está diseñada y distribuida para garantizar la máxima seguridad física, comodidad e interactividad pedagógica de los alumnos en cada etapa formativa:
+            </p>
+            <div class="infra-grid">
+                <div class="infra-item">🏢 Aulas Multimedia Equipadas</div>
+                <div class="infra-item">💻 Centro de Cómputo e Informática</div>
+                <div class="infra-item">🔬 Laboratorio de Ciencias y Química</div>
+                <div class="infra-item">⚽ Losa Deportiva y Áreas de Recreación</div>
+                <div class="infra-item">📚 Biblioteca y Sala de Lectura</div>
+                <div class="infra-item">🛡️ Cámaras y Protocolos de Seguridad</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página Institucional -->
     <footer>
-        <p>&copy; 2026 I.E.P. San Ignacio de Loyola - Sicuani.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>I.E.P. San Ignacio de Loyola</h4>
+                <p>Institución privada comprometida con la formación de líderes con sólidos valores y excelencia académica en la provincia de Canchis.</p>
+                <p>R.D. USE-C-N° 214-2002</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación Rápida</h4>
+                <ul>
+                    <li><a href="index.html">Página de Inicio</a></li>
+                    <li><a href="nosotros.html">Historia, Misión y Visión</a></li>
+                    <li><a href="admision.html">Requisitos y Matrícula</a></li>
+                    <li><a href="noticias.html">Circulares y Convocatorias</a></li>
+                    <li><a href="contacto.html">Ubicación y Atención</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Horarios y Contacto</h4>
+                <p><strong>Dirección:</strong> Sicuani, Canchis - Cusco, Perú</p>
+                <p><strong>Teléfono:</strong> (084) 351234 / 984 123 456</p>
+                <p><strong>Secretaría:</strong> Lunes a Viernes de 8:00 AM a 2:00 PM</p>
+                <p><strong>Correo:</strong> informes@sanignacio.edu.pe</p>
+            </div>
+            <div class="footer-col">
+                <h4>Plataforma Interna</h4>
+                <p>Acceso restringido para el personal directivo, administrativo y docente del plantel escolar.</p>
+                <p style="margin-top: 1rem;"><a href="login.php" class="btn-intranet" style="display: inline-block;">Ingresar a la Intranet</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>I.E.P. San Ignacio de Loyola - Sicuani © 2026 | Sistema Web Integrado desarrollado para fines de gestión escolar institucional.</p>
+        </div>
     </footer>
+
 </body>
 </html>

@@ -3,46 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto y Normas - I.E.P. San Ignacio de Loyola</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <title>Contacto - I.E.P. San Ignacio de Loyola</title>
+    <style>
+        :root {
+            --primary: #0f2d59;
+            --primary-dark: #0a1f3d;
+            --primary-light: #2b6cb0;
+            --accent-red: #c53030;
+            --accent-red-hover: #9b2c2c;
+            --bg: #f4f6f9;
+            --surface: #ffffff;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-header {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-bottom: 4px solid var(--accent-red);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-box h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .brand-box p {
+            font-size: 0.8rem;
+            color: #cbd5e0;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.6rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #63b3ed;
+        }
+
+        .btn-intranet {
+            background-color: var(--accent-red) !important;
+            color: #ffffff !important;
+            padding: 0.55rem 1.3rem;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+
+        .btn-intranet:hover {
+            background-color: var(--accent-red-hover) !important;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+
+        .header-section h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-section p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .grid-contacto {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-box {
+            background: var(--surface);
+            padding: 2.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            border-top: 5px solid var(--primary);
+        }
+
+        .card-box h3 {
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 0.5rem;
+        }
+
+        .info-row {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .info-row strong {
+            color: var(--primary);
+            display: inline-block;
+            min-width: 170px;
+        }
+
+        .normativa-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .normativa-list a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1.1rem;
+            background: #f8fafc;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .normativa-list a:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        footer {
+            background-color: var(--primary-dark);
+            color: #cbd5e0;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.88rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 820px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .grid-contacto {
+                grid-template-columns: 1fr;
+            }
+            .info-row strong {
+                display: block;
+                margin-bottom: 0.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="brand">
-            <h1>I.E.P. SAN IGNACIO DE LOYOLA</h1>
-            <span>Sicuani - Canchis</span>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-box">
+                <h1>I.E.P. SAN IGNACIO DE LOYOLA</h1>
+                <p>Sicuani - Canchis | Formación Integral de Excelencia</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="admision.html">Admisión</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+                <li><a href="login.php" class="btn-intranet">Intranet / Login</a></li>
+            </ul>
         </div>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="admision.html">Admisión</a>
-            <a href="noticias.html">Noticias</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="login.php" class="btn-acceso">Intranet / Login</a>
-        </nav>
     </header>
 
-    <div class="container">
-        <div class="grid-3">
-            <div class="card">
-                <h3>Documentos Normativos</h3>
-                <p>Descarga de instrumentos oficiales del colegio:</p>
-                <p style="margin-top: 10px;"><a href="#" style="color: #2b6cb0; font-weight: bold;">📄 Reglamento Interno 2026 (PDF)</a></p>
-                <p style="margin-top: 5px;"><a href="#" style="color: #2b6cb0; font-weight: bold;">📄 Normas de Convivencia Escolar</a></p>
-                <p style="margin-top: 5px;"><a href="#" style="color: #c53030; font-weight: bold;">📖 Libro de Reclamaciones Virtual</a></p>
-            </div>
-            <div class="card" style="grid-column: span 2;">
-                <h3>Atención al Ciudadano y Ubicación</h3>
-                <p><strong>Ubicación:</strong> Sicuani, Provincia de Canchis, Cusco.</p>
-                <p><strong>Horario de Secretaría:</strong> Lunes a Viernes de 8:00 a.m. a 2:00 p.m.</p>
-                <p><strong>Teléfono:</strong> (084) 351234 | <strong>Celular Directivo:</strong> 984123456</p>
-                <p><strong>Correo Electrónico:</strong> informes@sanignacio.edu.pe</p>
-            </div>
+    <main class="container">
+        <div class="header-section">
+            <h2>Canales de Atención y Contacto Institucional</h2>
+            <p>Estamos a su servicio para atender cualquier consulta académica o administrativa del plantel escolar.</p>
         </div>
-    </div>
+
+        <div class="grid-contacto">
+            <section class="card-box">
+                <h3>Sede Institucional</h3>
+                <div class="info-row">
+                    <strong>Ubicación:</strong> Sicuani, Canchis - Cusco, Perú.
+                </div>
+                <div class="info-row">
+                    <strong>Horario en Secretaría:</strong> Lunes a Viernes de 8:00 a.m. a 2:00 p.m.
+                </div>
+                <div class="info-row">
+                    <strong>Teléfono Directo:</strong> (084) 351234 / 984 123 456
+                </div>
+                <div class="info-row">
+                    <strong>Correo Institucional:</strong> informes@sanignacio.edu.pe
+                </div>
+                <div class="info-row">
+                    <strong>Resolución Ministerial:</strong> USE-C-N° 214-2002
+                </div>
+            </section>
+
+            <section class="card-box">
+                <h3>Documentos Normativos y Enlaces</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Acceso transparente a las disposiciones oficiales y canales de atención de reclamos:
+                </p>
+                <div class="normativa-list">
+                    <a href="#reglamento">📄 Descargar Reglamento Interno Institucional (PDF)</a>
+                    <a href="#pat">📑 Descargar Plan Anual de Trabajo - PAT (PDF)</a>
+                    <a href="#reclamaciones">📖 Acceso al Libro de Reclamaciones Virtual</a>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <footer>
-        <p>&copy; 2026 I.E.P. San Ignacio de Loyola - Sicuani.</p>
+        <p><strong>I.E.P. San Ignacio de Loyola - Sicuani</strong></p>
+        <p>Resolución Ministerial USE-C-N° 214-2002 | Todos los derechos reservados © 2026</p>
     </footer>
+
 </body>
 </html>

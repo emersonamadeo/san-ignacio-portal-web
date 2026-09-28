@@ -3,49 +3,761 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I.E.P. San Ignacio de Loyola - Sicuani</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <title>I.E.P. San Ignacio de Loyola - Portal Institucional</title>
+    <style>
+        :root {
+            --primary: #0f2d59;
+            --primary-dark: #0a1f3d;
+            --primary-light: #2b6cb0;
+            --accent-red: #c53030;
+            --accent-red-hover: #9b2c2c;
+            --accent-gold: #d69e2e;
+            --bg: #f4f6f9;
+            --surface: #ffffff;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Franja informativa superior */
+        .top-info-bar {
+            background-color: var(--primary-dark);
+            color: #cbd5e0;
+            padding: 0.45rem 1.5rem;
+            font-size: 0.82rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .top-info-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-info-container span {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        /* Encabezado Oficial */
+        .main-header {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-bottom: 4px solid var(--accent-red);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-box h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .brand-box p {
+            font-size: 0.8rem;
+            color: #cbd5e0;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #63b3ed;
+        }
+
+        .btn-intranet {
+            background-color: var(--accent-red) !important;
+            color: #ffffff !important;
+            padding: 0.55rem 1.3rem;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+
+        .btn-intranet:hover {
+            background-color: var(--accent-red-hover) !important;
+        }
+
+        /* Hero Principal */
+        .hero {
+            background: linear-gradient(rgba(15, 45, 89, 0.92), rgba(10, 31, 61, 0.95)), 
+                        radial-gradient(circle at 80% 20%, #2b6cb0 0%, transparent 50%);
+            color: #ffffff;
+            padding: 5rem 1.5rem 4.5rem;
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(214, 158, 46, 0.2);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 850px;
+            margin: 0 auto 2.5rem;
+            color: #cbd5e0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .btn-hero {
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary-hero {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        .btn-primary-hero:hover {
+            background-color: #b7791f;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary-hero {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        .btn-secondary-hero:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        /* Barra de Métricas del Colegio */
+        .stats-strip {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.4rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contenedores Generales */
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Cuadrícula de Pilares Formativos */
+        .grid-pilares {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4.5rem;
+        }
+
+        .card-pilar {
+            background: var(--surface);
+            padding: 2rem 1.75rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--accent-gold);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+        }
+
+        .card-pilar:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+        }
+
+        .card-pilar h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .card-pilar p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Tarjetas de Niveles */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4.5rem;
+        }
+
+        .card-item {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2.2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            transition: transform 0.25s, box-shadow 0.25s;
+            border-top: 5px solid var(--primary-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+        }
+
+        .card-item h4 {
+            color: var(--primary);
+            font-size: 1.35rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card-item p {
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+        }
+
+        .card-item ul {
+            padding-left: 1.2rem;
+            color: var(--text-dark);
+            font-size: 0.92rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-card {
+            display: inline-block;
+            text-align: center;
+            background: #edf2f7;
+            color: var(--primary);
+            padding: 0.65rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .card-item:hover .btn-card {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Sección de Reconocimientos / Por Qué Elegirnos */
+        .banner-destacado {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            padding: 3.5rem 2.5rem;
+            border-radius: 14px;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .banner-destacado h3 {
+            font-size: 1.9rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .banner-destacado p {
+            color: #cbd5e0;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .banner-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .banner-list li {
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Sección de Noticias Breves en Portada */
+        .grid-noticias-home {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-mini-noticia {
+            background: var(--surface);
+            padding: 1.75rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+        }
+
+        .mini-fecha {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .card-mini-noticia h4 {
+            color: var(--primary);
+            font-size: 1.15rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .card-mini-noticia p {
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Banner de Llamado a la Acción (CTA) */
+        .cta-admision {
+            background: #ffffff;
+            border: 2px dashed var(--accent-gold);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .cta-admision h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-admision p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        /* Pie de página enriquecido */
+        footer {
+            background-color: var(--primary-dark);
+            color: #cbd5e0;
+            padding: 3.5rem 1.5rem 1.5rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--accent-red);
+            display: inline-block;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-col a {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #ffffff;
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+
+        @media (max-width: 860px) {
+            .top-info-container {
+                flex-direction: column;
+                gap: 0.3rem;
+                text-align: center;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .hero h2 {
+                font-size: 2.1rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+            }
+            .banner-destacado {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="brand">
-            <h1>I.E.P. SAN IGNACIO DE LOYOLA</h1>
-            <span>Sicuani - Canchis | Formación Integral de Excelencia</span>
+
+    <!-- Franja de contacto rápido -->
+    <div class="top-info-bar">
+        <div class="top-info-container">
+            <span>📍 Canchis, Sicuani - Cusco | R.D. USE-C-N° 214-2002</span>
+            <span>📞 Central Telefónica: (084) 351234 / 984 123 456</span>
+            <span>⏰ Atención: Lun - Vie 8:00 AM - 2:00 PM</span>
         </div>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="admision.html">Admisión</a>
-            <a href="noticias.html">Noticias</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="login.php" class="btn-acceso">Intranet / Login</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <section class="hero">
-            <h2>Educación de Calidad con Visión de Futuro</h2>
-            <p>Formando líderes con sólidos valores morales y exigencia académica en Sicuani.</p>
-        </section>
-
-        <section class="grid-3">
-            <div class="card">
-                <h3>Nivel Inicial</h3>
-                <p>Estimulación temprana, desarrollo psicomotriz, valores y ambientes seguros para el aprendizaje de los más pequeños.</p>
-            </div>
-            <div class="card">
-                <h3>Nivel Primaria</h3>
-                <p>Desarrollo de competencias lógicas, comprensión lectora, inglés intensivo y uso de tecnologías de información.</p>
-            </div>
-            <div class="card">
-                <h3>Nivel Secundaria</h3>
-                <p>Preparación preuniversitaria rigurosa, orientación vocacional y participación destacada en concursos ONEM y FENCYT.</p>
-            </div>
-        </section>
     </div>
 
+    <!-- Encabezado Institucional -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="brand-box">
+                <h1>I.E.P. SAN IGNACIO DE LOYOLA</h1>
+                <p>Sicuani - Canchis | Formación Integral de Excelencia</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="admision.html">Admisión</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.php" class="btn-intranet">Intranet / Login</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero">
+        <span class="hero-tag">Admisión Ordinaria 2026 - 2027</span>
+        <h2>Educación de Calidad con Visión de Futuro</h2>
+        <p>Formamos líderes íntegros con sólidos principios morales, pensamiento crítico y exigencia científica preuniversitaria en la ciudad de Sicuani.</p>
+        <div class="hero-buttons">
+            <a href="admision.html" class="btn-hero btn-primary-hero">Postular a una Vacante</a>
+            <a href="login.php" class="btn-hero btn-secondary-hero">Acceso al Panel Directivo</a>
+        </div>
+    </section>
+
+    <!-- Barra de Métricas y Solidez Escolar -->
+    <section class="stats-strip">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>+24</h3>
+                <p>Años de Trayectoria</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Docentes Titulados</p>
+            </div>
+            <div class="stat-item">
+                <h3>03</h3>
+                <p>Niveles Educativos</p>
+            </div>
+            <div class="stat-item">
+                <h3>N.° 1</h3>
+                <p>Líderes en Concursos UGEL</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilares Formativos -->
+    <main class="container">
+        <div class="section-header">
+            <h2>Pilares de Nuestra Formación</h2>
+            <p>Un modelo pedagógico que combina el humanismo cristiano con las competencias del siglo XXI</p>
+        </div>
+
+        <div class="grid-pilares">
+            <div class="card-pilar">
+                <h4>Excelencia Académica</h4>
+                <p>Enfoque por competencias en ciencias, lenguaje y matemáticas para asegurar un desempeño sobresaliente en evaluaciones de ingreso superior.</p>
+            </div>
+            <div class="card-pilar">
+                <h4>Valores Ignacianos</h4>
+                <p>Formación ética orientada al servicio del prójimo, honestidad, puntualidad y respeto permanente a la dignidad humana.</p>
+            </div>
+            <div class="card-pilar">
+                <h4>Innovación Digital</h4>
+                <p>Laboratorios de cómputo equipados, uso pedagógico de herramientas virtuales y seguimiento de expedientes académicos en línea.</p>
+            </div>
+            <div class="card-pilar">
+                <h4>Acompañamiento Integral</h4>
+                <p>Departamento psicopedagógico permanente, escuela de padres y tutoría personalizada para cada estudiante del plantel.</p>
+            </div>
+        </div>
+
+        <!-- Propuesta Pedagógica por Niveles -->
+        <div class="section-header">
+            <h2>Niveles Educativos</h2>
+            <p>Rutas formativas continuas diseñadas para cada fase del desarrollo del estudiante</p>
+        </div>
+
+        <div class="cards-grid">
+            <article class="card-item">
+                <div>
+                    <h4>Nivel Inicial (3, 4 y 5 años)</h4>
+                    <p>Estimulación temprana, desarrollo motor fino y grueso, afectividad y primeras nociones de razonamiento lógico en entornos protegidos.</p>
+                    <ul>
+                        <li>Aulas lúdicas ambientadas por edades</li>
+                        <li>Iniciación temprana en inglés formativo</li>
+                        <li>Talleres de psicomotricidad y artes plásticas</li>
+                    </ul>
+                </div>
+                <a href="admision.html" class="btn-card">Consultar Vacantes Inicial</a>
+            </article>
+
+            <article class="card-item">
+                <div>
+                    <h4>Nivel Primaria (1.° al 6.° grado)</h4>
+                    <p>Consolidación del pensamiento deductivo, comprensión lectora profunda, razonamiento cuantitativo y proyectos ecológicos vivenciales.</p>
+                    <ul>
+                        <li>Plana docente especializada por áreas curriculares</li>
+                        <li>Robótica educativa y computación aplicada</li>
+                        <li>Talleres deportivos, cívicos y folklóricos</li>
+                    </ul>
+                </div>
+                <a href="admision.html" class="btn-card">Consultar Vacantes Primaria</a>
+            </article>
+
+            <article class="card-item">
+                <div>
+                    <h4>Nivel Secundaria (1.° al 5.° año)</h4>
+                    <p>Orientación preuniversitaria intensiva, liderazgo juvenil, clubes científicos y preparación de alto nivel para exámenes de admisión.</p>
+                    <ul>
+                        <li>Participación en certámenes nacionales ONEM y FENCYT</li>
+                        <li>Laboratorios de ciencias naturales y debate cívico</li>
+                        <li>Orientación vocacional y simulacros tipo admisión</li>
+                    </ul>
+                </div>
+                <a href="admision.html" class="btn-card">Consultar Vacantes Secundaria</a>
+            </article>
+        </div>
+
+        <!-- Banner Destacado Institucional -->
+        <section class="banner-destacado">
+            <div>
+                <h3>¿Por qué elegir a San Ignacio de Loyola?</h3>
+                <p>
+                    Respaldados por la <strong>Resolución Ministerial USE-C-N° 214-2002</strong>, nuestra trayectoria en Canchis se sustenta en egresados que hoy destacan en universidades nacionales y privadas del país, forjados bajo el lema del esfuerzo constante y la vocación de superación.
+                </p>
+                <ul class="banner-list">
+                    <li>✔ Ambiente seguro, disciplinado y de respeto mutuo</li>
+                    <li>✔ Infraestructura con salones multimedia y laboratorios</li>
+                    <li>✔ Monitoreo constante del rendimiento académico</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <a href="contacto.html" class="btn-hero btn-primary-hero" style="display: inline-block;">Conoce Nuestras Instalaciones</a>
+            </div>
+        </section>
+
+        <!-- Últimos Avisos y Comunicados -->
+        <div class="section-header">
+            <h2>Avisos y Comunicados Oficiales</h2>
+            <p>Manténgase al tanto de las actividades más recientes de nuestra comunidad escolar</p>
+        </div>
+
+        <div class="grid-noticias-home">
+            <div class="card-mini-noticia">
+                <span class="mini-fecha">18 de Septiembre, 2026</span>
+                <h4>Clasificación a la Etapa Provincial de la ONEM</h4>
+                <p>Estudiantes de los grados superiores obtuvieron puntajes destacados en la prueba de razonamiento lógico-matemático a nivel de la UGEL Canchis.</p>
+            </div>
+            <div class="card-mini-noticia">
+                <span class="mini-fecha">12 de Septiembre, 2026</span>
+                <h4>Desfile Cívico Escolar por Fiestas del Cusco</h4>
+                <p>Nuestra escolta oficial y delegación de secundaria participaron con honores en la Plaza Mayor de Sicuani recibiendo reconocimiento cívico.</p>
+            </div>
+            <div class="card-mini-noticia">
+                <span class="mini-fecha">05 de Septiembre, 2026</span>
+                <h4>Convocatoria a Escuela de Padres y Entrega de Libretas</h4>
+                <p>Reunión programada con los tutores de cada nivel para la entrega de informes bimestrales y orientaciones socioafectivas familiares.</p>
+            </div>
+        </div>
+
+        <!-- Banner de Matrícula -->
+        <section class="cta-admision">
+            <h3>¿Listo para formar parte de la Familia Ignaciana?</h3>
+            <p>Las solicitudes para el año escolar 2026 se encuentran en evaluación. Inicie el proceso de postulación en línea desde la comodidad de su hogar.</p>
+            <a href="admision.html" class="btn-hero btn-primary-hero">Iniciar Solicitud de Admisión Online</a>
+        </section>
+    </main>
+
+    <!-- Pie de Página Institucional -->
     <footer>
-        <p>&copy; 2026 I.E.P. San Ignacio de Loyola - Sicuani, Canchis, Cusco. Todos los derechos reservados.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>I.E.P. San Ignacio de Loyola</h4>
+                <p>Institución privada comprometida con la formación de líderes con sólidos valores y excelencia académica en la provincia de Canchis.</p>
+                <p>R.D. USE-C-N° 214-2002</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación Rápida</h4>
+                <ul>
+                    <li><a href="index.html">Página de Inicio</a></li>
+                    <li><a href="nosotros.html">Historia, Misión y Visión</a></li>
+                    <li><a href="admision.html">Requisitos y Matrícula</a></li>
+                    <li><a href="noticias.html">Circulares y Convocatorias</a></li>
+                    <li><a href="contacto.html">Ubicación y Atención</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Horarios y Contacto</h4>
+                <p><strong>Dirección:</strong> Sicuani, Canchis - Cusco, Perú</p>
+                <p><strong>Teléfono:</strong> (084) 351234 / 984 123 456</p>
+                <p><strong>Secretaría:</strong> Lunes a Viernes de 8:00 AM a 2:00 PM</p>
+                <p><strong>Correo:</strong> informes@sanignacio.edu.pe</p>
+            </div>
+            <div class="footer-col">
+                <h4>Plataforma Interna</h4>
+                <p>Acceso restringido para el personal directivo, administrativo y docente del plantel escolar.</p>
+                <p style="margin-top: 1rem;"><a href="login.php" class="btn-intranet" style="display: inline-block;">Ingresar a la Intranet</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>I.E.P. San Ignacio de Loyola - Sicuani © 2026 | Sistema Web Integrado desarrollado para fines de gestión escolar institucional.</p>
+        </div>
     </footer>
+
 </body>
 </html>
