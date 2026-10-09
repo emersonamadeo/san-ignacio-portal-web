@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-09-2026 a las 11:55:01
+-- Tiempo de generación: 09-10-2026 a las 23:18:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bd_san_ignacio`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mensajes_contacto`
+--
+
+CREATE TABLE `mensajes_contacto` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telefono` varchar(30) DEFAULT NULL,
+  `asunto` varchar(100) NOT NULL,
+  `mensaje` text NOT NULL,
+  `estado` varchar(30) DEFAULT 'Pendiente',
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `mensajes_contacto`
+--
+
+INSERT INTO `mensajes_contacto` (`id`, `nombre`, `email`, `telefono`, `asunto`, `mensaje`, `estado`, `fecha_registro`) VALUES
+(1, 'Jonas Rios Ccalle', 'Jonas@gmail.com', '914141414', 'Certificados y Trámites', 'Como es el proceso', 'Pendiente', '2026-10-09 21:14:13');
 
 -- --------------------------------------------------------
 
@@ -87,7 +111,11 @@ CREATE TABLE `solicitudes_admision` (
 --
 
 INSERT INTO `solicitudes_admision` (`id_solicitud`, `nombre_apoderado`, `correo`, `telefono`, `nivel_postulacion`, `grado`, `mensaje`, `estado`, `fecha_envio`) VALUES
-(1, 'Juan Carlos Quispe Mamani', 'jcquispe@gmail.com', '984556677', 'Secundaria', '1° de Secundaria', 'Deseo consultar vacantes disponibles y requisitos de traslado para mi menor hijo.', 'Pendiente', '2026-09-12 05:48:21');
+(1, 'Juan Carlos Quispe Mamani', 'jcquispe@gmail.com', '984556677', 'Secundaria', '1° de Secundaria', 'Deseo consultar vacantes disponibles y requisitos de traslado para mi menor hijo.', 'Pendiente', '2026-09-12 05:48:21'),
+(2, 'Emerson Amadeo Condori Baca', 'emersonamadeoc@gmail.com', '917444906', 'Inicial', '5 años', 'Quiero que mi hijo estudie en esta institucion', 'Pendiente', '2026-10-09 19:18:39'),
+(3, 'Yair emanuel Condori Pachavilca', 'yair@gmail.com', '917444906', 'Inicial', '5 años', 'Es un niño feliz', 'Pendiente', '2026-10-09 20:30:27'),
+(4, 'Eimy Pachavilca Condori', 'Eimy@gmail.com', '123456789', 'Inicial', '3 años', 'Quiero vacante para esta edad', 'Pendiente', '2026-10-09 20:33:47'),
+(5, 'Rony Padin Mendoza', 'rony@gmail.com', '987878787', 'Primaria', '1° Primaria', 'Necesito mas información', 'Pendiente', '2026-10-09 20:56:48');
 
 -- --------------------------------------------------------
 
@@ -104,20 +132,29 @@ CREATE TABLE `usuarios` (
   `password_hash` varchar(255) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `activo` tinyint(1) NOT NULL DEFAULT 1,
-  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `nombres`, `apellidos`, `correo`, `password_hash`, `telefono`, `activo`, `fecha_registro`) VALUES
-(1, 1, 'Director', 'General', 'admin@sanignacio.edu.pe', '$2y$10$eO0V2.K9zO24bZzS5cKLeOQyqg7719M3L6c4T1Vw3n98F1p8L.mQ.', '984123456', 1, '2026-09-12 05:48:21'),
-(2, 3, 'Emerson Amadeo', 'Condori Baca', '47608149@continental.edu.pe', '$2y$10$G5j62QgxJmsqZkT/CYRG/usH.GUDDOleHSkdWz0nC7CmUAZnZ27nu', '917444906', 1, '2026-09-12 07:52:01');
+INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `nombres`, `apellidos`, `correo`, `password_hash`, `telefono`, `activo`, `fecha_registro`, `password`) VALUES
+(1, 1, 'Director', 'General', 'admin@sanignacio.edu.pe', '$2y$10$eO0V2.K9zO24bZzS5cKLeOQyqg7719M3L6c4T1Vw3n98F1p8L.mQ.', '984123456', 1, '2026-09-12 05:48:21', ''),
+(2, 3, 'Emerson Amadeo', 'Condori Baca', '47608149@continental.edu.pe', 'dosmasdos2', '917444906', 1, '2026-09-12 07:52:01', ''),
+(3, 3, 'Juan', 'Condori', 'juan.prueba@correo.com', '$2y$10$kl43TW.cYO88YZYoyvB2X.Kj/6jQgBy8VqjMXUVDdWskMmGkx/7FO', '917444906', 1, '2026-09-28 03:10:24', ''),
+(4, 3, 'Leidy Pachavilca Gutierrez', '', 'Leidy@gmail.com', '', '917444906', 1, '2026-10-09 20:26:15', '$2y$10$IWtUmCTzIAcX6D9I6GCm7OxtFq53Em619zKhg2pkBleI7/dKNPua.');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `mensajes_contacto`
+--
+ALTER TABLE `mensajes_contacto`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `noticias_eventos`
@@ -152,6 +189,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `mensajes_contacto`
+--
+ALTER TABLE `mensajes_contacto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `noticias_eventos`
 --
 ALTER TABLE `noticias_eventos`
@@ -167,13 +210,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `solicitudes_admision`
 --
 ALTER TABLE `solicitudes_admision`
-  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
