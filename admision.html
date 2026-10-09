@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admisión 2026 - I.E.P. San Ignacio de Loyola</title>
+    <title>Admisión y Matrícula 2026 - I.E.P. San Ignacio de Loyola</title>
     <style>
         :root {
-            --primary: #0f2d59;
-            --primary-dark: #0a1f3d;
-            --primary-light: #2b6cb0;
-            --accent-red: #c53030;
-            --accent-red-hover: #9b2c2c;
-            --accent-gold: #d69e2e;
-            --bg: #f4f6f9;
-            --surface: #ffffff;
-            --text-dark: #2d3748;
-            --text-muted: #718096;
-            --border: #e2e8f0;
+            /* Paleta cromática oficial basada en la insignia del colegio */
+            --primary: #800c19;          /* Granate institucional */
+            --primary-dark: #58060f;     /* Granate profundo */
+            --primary-light: #a31928;    /* Granate claro */
+            --accent-gold: #e5a910;      /* Dorado del blasón y estrellas */
+            --accent-gold-hover: #c48e06;
+            --accent-blue: #0f4c81;      /* Azul de contraste */
+            --bg: #fbf8f2;               /* Marfil pergamino */
+            --surface: #ffffff;          /* Fondo blanco para tarjetas */
+            --text-dark: #221c1d;        /* Texto principal */
+            --text-muted: #6b6364;       /* Texto descriptivo */
+            --border: #ebdccb;           /* Bordes suaves */
+            --shadow-sm: 0 2px 6px rgba(88, 6, 15, 0.05);
+            --shadow-md: 0 8px 20px rgba(88, 6, 15, 0.08);
+            --shadow-lg: 0 12px 28px rgba(88, 6, 15, 0.12);
         }
 
         * {
@@ -38,10 +42,10 @@
         /* Franja informativa superior */
         .top-info-bar {
             background-color: var(--primary-dark);
-            color: #cbd5e0;
-            padding: 0.45rem 1.5rem;
+            color: #f7e9d7;
+            padding: 0.5rem 1.5rem;
             font-size: 0.82rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 2px solid var(--accent-gold);
         }
 
         .top-info-container {
@@ -50,99 +54,120 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .top-info-container span {
             display: flex;
+            align-items: center;
             gap: 1.25rem;
         }
 
-        /* Encabezado Oficial */
+        /* Encabezado Principal Estable */
         .main-header {
-            background-color: var(--primary);
-            color: #ffffff;
-            border-bottom: 4px solid var(--accent-red);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: var(--surface);
+            border-bottom: 4px solid var(--primary);
+            box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
             z-index: 1000;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .header-container {
             max-width: 1250px;
             margin: 0 auto;
-            padding: 1rem 1.5rem;
+            padding: 0.5rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 120px;
         }
 
-        .brand-box h1 {
-            font-size: 1.35rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            text-transform: uppercase;
+        .brand-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            height: 100%;
         }
 
-        .brand-box p {
-            font-size: 0.8rem;
-            color: #cbd5e0;
-            margin-top: 2px;
+        .brand-logo {
+            height: 105px;
+            width: auto;
+            max-width: 520px;
+            object-fit: contain;
+            display: block;
+            border-radius: 4px;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.12));
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 0.9rem;
             align-items: center;
         }
 
         .nav-menu a {
-            color: #ffffff;
+            display: inline-block;
+            color: var(--text-dark);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.2s;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.5rem 0.9rem;
+            border-radius: 6px;
+            transition: color 0.2s ease, background-color 0.2s ease;
         }
 
         .nav-menu a:hover,
         .nav-menu a.active {
-            color: #63b3ed;
+            color: var(--primary);
+            background-color: rgba(128, 12, 25, 0.08);
         }
 
         .btn-intranet {
-            background-color: var(--accent-red) !important;
+            background-color: var(--primary) !important;
             color: #ffffff !important;
-            padding: 0.55rem 1.3rem;
+            padding: 0.65rem 1.45rem !important;
             border-radius: 6px;
-            font-weight: 700;
-            transition: background-color 0.2s;
+            font-weight: 700 !important;
+            font-size: 1rem !important;
+            border: 1px solid var(--primary-dark);
+            transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
         }
 
         .btn-intranet:hover {
-            background-color: var(--accent-red-hover) !important;
+            background-color: var(--primary-dark) !important;
+            color: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(88, 6, 15, 0.3) !important;
         }
 
-        /* Banner Superior Interior */
+        /* Banner de la Página */
         .page-banner {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(135deg, rgba(88, 6, 15, 0.92) 0%, rgba(128, 12, 25, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: #ffffff;
-            padding: 3.5rem 1.5rem;
+            padding: 4.5rem 1.5rem;
             text-align: center;
+            border-bottom: 4px solid var(--accent-gold);
         }
 
         .page-banner h2 {
-            font-size: 2.3rem;
+            font-size: 2.6rem;
             font-weight: 800;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .page-banner p {
-            color: #cbd5e0;
-            font-size: 1.05rem;
-            max-width: 750px;
+            font-size: 1.15rem;
+            max-width: 820px;
             margin: 0 auto;
+            color: #faebd7;
         }
 
         /* Contenedor General */
@@ -150,16 +175,15 @@
             max-width: 1200px;
             margin: 3.5rem auto;
             padding: 0 1.5rem;
-            flex: 1;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2.8rem;
         }
 
         .section-header h3 {
-            font-size: 1.9rem;
+            font-size: 2rem;
             color: var(--primary);
             font-weight: 800;
             margin-bottom: 0.4rem;
@@ -167,209 +191,257 @@
 
         .section-header p {
             color: var(--text-muted);
-            font-size: 0.98rem;
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        /* Cuadrícula de Requisitos y Cronograma */
-        .grid-dos {
+        /* Tarjetas de Requisitos con Imagen */
+        .requisitos-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-bottom: 3.5rem;
+            margin-bottom: 4rem;
         }
 
-        .card-info {
+        .requisito-card {
             background: var(--surface);
-            padding: 2.2rem;
             border-radius: 12px;
+            overflow: hidden;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            border-top: 5px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s, box-shadow 0.25s;
         }
 
-        .card-info h4 {
-            color: var(--primary);
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
-            font-weight: 700;
-            border-bottom: 2px solid #edf2f7;
-            padding-bottom: 0.5rem;
+        .requisito-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
-        .card-info ul, .card-info ol {
-            padding-left: 1.25rem;
-            line-height: 1.8;
-            font-size: 0.95rem;
-            color: var(--text-dark);
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-gold);
         }
 
-        .card-info li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Pasos del Proceso (Timeline Horizontal/Grid) */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .step-card {
-            background: var(--surface);
+        .card-body {
             padding: 1.8rem;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            border-top: 4px solid var(--accent-gold);
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
-        .step-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .step-num {
-            display: inline-flex;
-            width: 42px;
-            height: 42px;
-            background: var(--primary);
-            color: #ffffff;
-            border-radius: 50%;
-            justify-content: center;
-            align-items: center;
+        .card-body h4 {
+            color: var(--primary);
+            font-size: 1.35rem;
             font-weight: 800;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
-        .step-card h5 {
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+        .card-body ul {
+            padding-left: 1.2rem;
+            color: var(--text-dark);
+            font-size: 0.93rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
         }
 
-        .step-card p {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.5;
+        /* Sección Dividida: Formulario e Información */
+        .admision-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 4rem;
         }
 
-        /* Formulario de Admisión */
-        .form-card {
+        /* Formulario Interactivo */
+        .form-container {
             background: var(--surface);
-            padding: 2.8rem;
-            border-radius: 12px;
+            border-radius: 14px;
             border: 1px solid var(--border);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-            border-top: 5px solid var(--accent-red);
-            margin-bottom: 3.5rem;
+            border-top: 5px solid var(--primary);
+            padding: 2.8rem;
+            box-shadow: var(--shadow-md);
         }
 
-        .form-card h4 {
+        .form-container h3 {
             color: var(--primary);
-            font-size: 1.55rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
         }
 
-        .form-card p.sub {
+        .form-container p {
             color: var(--text-muted);
-            margin-bottom: 2rem;
             font-size: 0.95rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
+            gap: 1.2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
             color: var(--text-dark);
+            margin-bottom: 0.4rem;
+            font-size: 0.92rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 0.8rem 1rem;
-            font-size: 0.95rem;
-            border: 1.5px solid #cbd5e0;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
             border-radius: 8px;
+            font-size: 0.95rem;
+            background-color: #faf7f2;
+            transition: all 0.2s ease;
             outline: none;
-            transition: all 0.2s;
-            background-color: #ffffff;
         }
 
         .form-control:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15);
+            background-color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(128, 12, 25, 0.15);
         }
 
-        .btn-enviar {
-            width: 100%;
-            padding: 0.95rem;
-            background-color: var(--primary);
-            color: #ffffff;
+        textarea.form-control {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .btn-submit {
+            background-color: var(--accent-gold);
+            color: #382400;
+            font-weight: 800;
+            font-size: 1.05rem;
+            padding: 0.9rem 2rem;
             border: none;
             border-radius: 8px;
-            font-size: 1.05rem;
-            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
+            width: 100%;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(229, 169, 16, 0.3);
         }
 
-        .btn-enviar:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-1px);
+        .btn-submit:hover {
+            background-color: var(--accent-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(229, 169, 16, 0.4);
         }
 
-        /* Sección de Preguntas Frecuentes (FAQ) */
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
+        /* Barra Lateral con Cronograma y Foto */
+        .sidebar-box {
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
             margin-bottom: 2rem;
         }
 
-        .faq-item {
-            background: var(--surface);
-            padding: 1.75rem;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--primary-light);
+        .sidebar-foto {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--accent-gold);
         }
 
-        .faq-item h5 {
+        .sidebar-content {
+            padding: 1.8rem;
+        }
+
+        .sidebar-content h4 {
             color: var(--primary);
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
         }
 
-        .faq-item p {
+        .timeline-item {
+            border-left: 3px solid var(--primary-light);
+            padding-left: 1rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 2px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background-color: var(--accent-gold);
+        }
+
+        .timeline-fecha {
+            font-size: 0.82rem;
+            color: var(--accent-blue);
+            font-weight: 700;
+            display: block;
+        }
+
+        .timeline-titulo {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        /* Preguntas Frecuentes (FAQ) */
+        .faq-box {
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 2.2rem;
+            margin-bottom: 3.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.2rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .faq-answer {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        /* Pie de Página */
+        /* Pie de página */
         footer {
             background-color: var(--primary-dark);
-            color: #cbd5e0;
+            color: #f7e9d7;
             padding: 3.5rem 1.5rem 1.5rem;
             margin-top: auto;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 4px solid var(--accent-gold);
         }
 
         .footer-grid {
@@ -381,19 +453,21 @@
         }
 
         .footer-col h4 {
-            color: #ffffff;
+            color: var(--accent-gold);
             font-size: 1.1rem;
             margin-bottom: 1.2rem;
             position: relative;
             padding-bottom: 0.4rem;
-            border-bottom: 2px solid var(--accent-red);
+            border-bottom: 2px solid var(--primary-light);
             display: inline-block;
+            font-weight: 700;
         }
 
         .footer-col p {
             font-size: 0.9rem;
             line-height: 1.7;
             margin-bottom: 0.6rem;
+            color: #ebdccb;
         }
 
         .footer-col ul {
@@ -404,14 +478,14 @@
         }
 
         .footer-col a {
-            color: #cbd5e0;
+            color: #ebdccb;
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.2s;
         }
 
         .footer-col a:hover {
-            color: #ffffff;
+            color: var(--accent-gold);
             padding-left: 4px;
         }
 
@@ -422,10 +496,10 @@
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.85rem;
-            color: #a0aec0;
+            color: #c9b8a8;
         }
 
-        @media (max-width: 860px) {
+        @media (max-width: 992px) {
             .top-info-container {
                 flex-direction: column;
                 gap: 0.3rem;
@@ -435,8 +509,23 @@
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
+                height: auto;
+                padding: 1.2rem;
             }
-            .grid-dos, .form-row {
+            .brand-link {
+                justify-content: center;
+            }
+            .brand-logo {
+                height: 80px;
+            }
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .admision-layout {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
                 grid-template-columns: 1fr;
             }
         }
@@ -444,7 +533,7 @@
 </head>
 <body>
 
-    <!-- Franja de contacto rápido -->
+    <!-- Franja informativa superior -->
     <div class="top-info-bar">
         <div class="top-info-container">
             <span>📍 Canchis, Sicuani - Cusco | R.D. USE-C-N° 214-2002</span>
@@ -456,10 +545,10 @@
     <!-- Encabezado Institucional -->
     <header class="main-header">
         <div class="header-container">
-            <div class="brand-box">
-                <h1>I.E.P. SAN IGNACIO DE LOYOLA</h1>
-                <p>Sicuani - Canchis | Formación Integral de Excelencia</p>
-            </div>
+            <a href="index.html" class="brand-link" title="I.E.P. San Ignacio de Loyola - Inicio">
+                <img src="img/logo.jpg" alt="I.E.P. San Ignacio de Loyola - Sicuani" class="brand-logo"
+                     onerror="if (!this.t1) { this.t1=true; this.src='img/logo.png'; } else if (!this.t2) { this.t2=true; this.src='img/logo'; } else if (!this.t3) { this.t3=true; this.src='img/LOGO SIL.jpg'; } else { this.src='LOGO SIL.jpg'; }">
+            </a>
             <ul class="nav-menu">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
@@ -471,145 +560,187 @@
         </div>
     </header>
 
-    <!-- Banner Superior -->
+    <!-- Banner de la Sección Admisión -->
     <section class="page-banner">
-        <h2>Admisión Escolar Ordinaria 2026 - 2027</h2>
-        <p>Incorpore a sus hijos a una comunidad pedagógica con más de 24 años de prestigio académico y formación en valores en Sicuani.</p>
+        <h2>Admisión y Matrícula Escolar 2026 - 2027</h2>
+        <p>Inicie el proceso de postulación para integrar la Familia Ignaciana y brindar a sus hijos una educación de excelencia en Sicuani.</p>
     </section>
 
+    <!-- Contenido Principal -->
     <main class="container">
-        <!-- Requisitos y Cronograma -->
-        <section class="grid-dos">
-            <div class="card-info">
-                <h4>Requisitos de Postulación</h4>
-                <ul>
-                    <li>Copia simple y legible del DNI del estudiante postulante.</li>
-                    <li>Copia del DNI de ambos padres o apoderado legal acreditado.</li>
-                    <li>Ficha Única de Matrícula (FUM) emitida por el sistema SIAGIE de la institución de procedencia.</li>
-                    <li>Libreta de notas o informe de progreso de competencias del año anterior (sin áreas desaprobadas).</li>
-                    <li>Constancia de no adeudo de pensiones expedida por el colegio anterior.</li>
-                    <li>02 fotografías recientes tamaño pasaporte en fondo blanco.</li>
-                </ul>
-            </div>
 
-            <div class="card-info">
-                <h4>Etapas y Cronograma</h4>
-                <ol>
-                    <li><strong>Preinscripción Digital:</strong> Registro de datos a través del formulario virtual inferior.</li>
-                    <li><strong>Revisión de Expediente:</strong> Secretaría General verifica la disponibilidad de vacantes y requisitos en un plazo de 48 horas.</li>
-                    <li><strong>Entrevista Psicopedagógica:</strong> Breve diálogo formativo con el postulante y sus padres en la sede institucional.</li>
-                    <li><strong>Adjudicación y Matrícula:</strong> Formalización administrativa de la vacante y entrega de la carpeta institucional de bienvenida.</li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- Pasos Visuales -->
+        <!-- Requisitos por Nivel Educativo con Imágenes -->
         <div class="section-header">
-            <h3>Ruta del Proceso de Matrícula</h3>
-            <p>Siga estos cuatro pasos secuenciales para culminar satisfactoriamente el ingreso de su menor hijo</p>
+            <h3>Requisitos de Postulación por Nivel</h3>
+            <p>Documentación requerida para la apertura de expediente escolar y reserva de vacante</p>
         </div>
 
-        <section class="steps-grid">
-            <div class="step-card">
-                <div class="step-num">1</div>
-                <h5>Solicitud Web</h5>
-                <p>Complete sus datos de contacto y el nivel educativo requerido en nuestro sistema.</p>
+        <section class="requisitos-grid">
+            <!-- Nivel Inicial -->
+            <div class="requisito-card">
+                <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=600&q=80" alt="Estudiantes de Nivel Inicial" class="card-img">
+                <div class="card-body">
+                    <h4>Nivel Inicial (3, 4 y 5 años)</h4>
+                    <ul>
+                        <li>Partida de nacimiento original del menor.</li>
+                        <li>Copia del DNI del estudiante y ambos padres.</li>
+                        <li>Cartilla completa de vacunación actualizada.</li>
+                        <li>Ficha única de matrícula SIAGIE (si procede).</li>
+                        <li>04 fotografías tamaño carné con fondo blanco.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="step-card">
-                <div class="step-num">2</div>
-                <h5>Revisión Directiva</h5>
-                <p>Dirección y secretaría evalúan la vacante y coordinan una cita telefónica directa.</p>
+
+            <!-- Nivel Primaria -->
+            <div class="requisito-card">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80" alt="Estudiantes de Nivel Primaria" class="card-img">
+                <div class="card-body">
+                    <h4>Nivel Primaria (1.° al 6.° grado)</h4>
+                    <ul>
+                        <li>Ficha de matrícula generada por el sistema SIAGIE.</li>
+                        <li>Libreta de notas o informe de progreso de fin de año.</li>
+                        <li>Constancia de no adeudo de la I.E. de procedencia.</li>
+                        <li>Copia del DNI del estudiante y apoderado.</li>
+                        <li>Resolución de traslado de la institución de origen.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="step-card">
-                <div class="step-num">3</div>
-                <h5>Entrevista Familiar</h5>
-                <p>Espacio de conocimiento mutuo entre los tutores formativos y la familia del postulante.</p>
-            </div>
-            <div class="step-card">
-                <div class="step-num">4</div>
-                <h5>Matrícula Oficial</h5>
-                <p>Firma de actas, registro en el SIAGIE institucional y entrega del plan lectivo anual.</p>
+
+            <!-- Nivel Secundaria -->
+            <div class="requisito-card">
+                <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80" alt="Estudiantes de Nivel Secundaria" class="card-img">
+                <div class="card-body">
+                    <h4>Nivel Secundaria (1.° al 5.° año)</h4>
+                    <ul>
+                        <li>Certificado oficial de estudios de nivel primario/secundario.</li>
+                        <li>Ficha acumulativa y constancia de matrícula SIAGIE.</li>
+                        <li>Informe psicopedagógico o conductual del colegio de origen.</li>
+                        <li>Constancia de no adeudo económico.</li>
+                        <li>Entrevista personal con el comité de admisión y apoderados.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- Formulario de Preinscripción -->
-        <section class="form-card">
-            <h4>Formulario Virtual de Solicitud de Vacante</h4>
-            <p class="sub">Complete los campos requeridos para registrar formalmente su trámite en el portal del colegio. Nuestro equipo se comunicará a la brevedad.</p>
+        <!-- Bloque de Formulario Interactivo y Cronograma -->
+        <section class="admision-layout">
 
-            <form action="admision.html" method="POST" onsubmit="alert('¡Solicitud registrada correctamente! La Dirección General se comunicará telefónicamente en un plazo máximo de 48 horas.'); return false;">
-                <div class="form-row">
+            <!-- Formulario de Admisión -->
+            <div class="form-container">
+                <h3>Solicitud de Vacante en Línea</h3>
+                <p>Complete sus datos para registrar su trámite en el sistema. Secretaría se comunicará en un plazo máximo de 24 horas.</p>
+
+                <form action="admision_proceso.php" method="POST">
                     <div class="form-group">
-                        <label for="apoderado">Nombre Completo del Apoderado:</label>
-                        <input type="text" id="apoderado" name="nombre_apoderado" class="form-control" placeholder="Ej. Carlos Mendoza Salas" required>
+                        <label for="nombre_apoderado">Nombres y Apellidos del Apoderado *</label>
+                        <input type="text" id="nombre_apoderado" name="nombre_apoderado" class="form-control" placeholder="Ej. Carlos Mendoza Huamán" required>
                     </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico *</label>
+                            <input type="email" id="correo" name="correo" class="form-control" placeholder="apoderado@gmail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono / Celular de Contacto *</label>
+                            <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="984 123 456" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nivel_postulacion">Nivel Educativo de Postulación *</label>
+                            <select id="nivel_postulacion" name="nivel_postulacion" class="form-control" required>
+                                <option value="" disabled selected>Seleccione el nivel...</option>
+                                <option value="Inicial">Educación Inicial</option>
+                                <option value="Primaria">Educación Primaria</option>
+                                <option value="Secundaria">Educación Secundaria</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="grado">Grado Específico *</label>
+                            <input type="text" id="grado" name="grado" class="form-control" placeholder="Ej. 1° Primaria / 3 años" required>
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <label for="correo">Correo Electrónico de Contacto:</label>
-                        <input type="email" id="correo" name="correo" class="form-control" placeholder="apoderado@ejemplo.com" required>
+                        <label for="mensaje">Datos del Estudiante y Observaciones</label>
+                        <textarea id="mensaje" name="mensaje" class="form-control" placeholder="Indique el nombre del estudiante, colegio de procedencia o alguna consulta adicional..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Solicitud de Admisión</button>
+                </form>
+            </div>
+
+            <!-- Columna Lateral: Cronograma y Atención -->
+            <div>
+                <div class="sidebar-box">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Atención Institucional" class="sidebar-foto">
+                    <div class="sidebar-content">
+                        <h4>Cronograma de Matrícula</h4>
+
+                        <div class="timeline-item">
+                            <span class="timeline-fecha">Noviembre - Diciembre 2026</span>
+                            <span class="timeline-titulo">Recepción de Solicitudes y Traslados</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-fecha">Enero 2027</span>
+                            <span class="timeline-titulo">Evaluación de Expedientes y Entrevistas</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-fecha">Febrero 2027</span>
+                            <span class="timeline-titulo">Publicación de Vacantes y Ratificación</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-fecha">Marzo 2027</span>
+                            <span class="timeline-titulo">Inicio Formal del Año Escolar</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="telefono">Teléfono / Celular de Contacto:</label>
-                        <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Ej. 984123456" pattern="[0-9]{9}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nivel">Nivel al que Postula:</label>
-                        <select id="nivel" name="nivel_postulacion" class="form-control" required>
-                            <option value="">-- Seleccione el Nivel --</option>
-                            <option value="Inicial">Nivel Inicial (3, 4 y 5 años)</option>
-                            <option value="Primaria">Nivel Primaria (1.° al 6.° grado)</option>
-                            <option value="Secundaria">Nivel Secundaria (1.° al 5.° año)</option>
-                        </select>
-                    </div>
+                <div class="sidebar-box" style="padding: 1.8rem; background: #faf7f2;">
+                    <h4 style="color: var(--primary); margin-bottom: 0.6rem;">Atención Presencial</h4>
+                    <p style="font-size: 0.92rem; color: var(--text-dark); margin-bottom: 0.6rem;">
+                        También puede acercarse a nuestras oficinas en Sicuani para tramitar su expediente físico de forma directa.
+                    </p>
+                    <p style="font-size: 0.88rem; color: var(--accent-blue); font-weight: 700;">
+                        ⏰ Horario: Lun a Vie de 8:00 AM a 2:00 PM
+                    </p>
                 </div>
+            </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="postulante">Nombre Completo del Postulante:</label>
-                        <input type="text" id="postulante" name="nombre_postulante" class="form-control" placeholder="Ej. Luis Mendoza Quispe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="grado">Grado Específico:</label>
-                        <input type="text" id="grado" name="grado" class="form-control" placeholder="Ej. 3er Grado de Primaria / 1er Año de Secundaria" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="colegio_origen">Colegio de Procedencia:</label>
-                    <input type="text" id="colegio_origen" name="colegio_origen" class="form-control" placeholder="Ej. I.E. Mateo Pumacahua - Sicuani" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="mensaje">Consulta Adicional o Antecedentes:</label>
-                    <textarea id="mensaje" name="mensaje" rows="3" class="form-control" placeholder="Indique si cuenta con hermanos en el colegio o alguna observación que la dirección deba conocer..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-enviar">Registrar y Enviar Solicitud de Vacante</button>
-            </form>
         </section>
 
-        <!-- Preguntas Frecuentes -->
+        <!-- Preguntas Frecuentes (FAQ) -->
         <div class="section-header">
-            <h3>Preguntas Frecuentes (FAQ)</h3>
-            <p>Respuestas a las dudas más comunes sobre nuestro proceso de admisión escolar</p>
+            <h3>Preguntas Frecuentes sobre el Proceso</h3>
+            <p>Respuestas claras a las principales dudas de las familias postulantes</p>
         </div>
 
-        <section class="faq-grid">
+        <section class="faq-box">
             <div class="faq-item">
-                <h5>¿Las vacantes son limitadas por aula?</h5>
-                <p>Sí. Con el objetivo de mantener un acompañamiento personalizado y asegurar un alto rendimiento académico, trabajamos con un tope estricto de 25 a 30 alumnos por sección.</p>
+                <div class="faq-question">¿Cómo se confirma la asignación de vacante?</div>
+                <div class="faq-answer">
+                    Una vez registrada la solicitud, el comité de admisión evalúa el expediente según la disponibilidad por grado. El apoderado recibe una llamada telefónica y un correo formal con las indicaciones para la ratificación presencial.
+                </div>
             </div>
             <div class="faq-item">
-                <h5>¿Ofrecen descuentos para hermanos?</h5>
-                <p>La institución contempla una escala especial de beneficios para familias con dos o más hijos matriculados en los niveles Primaria y Secundaria.</p>
+                <div class="faq-question">¿Ofrecen preparación preuniversitaria en secundaria?</div>
+                <div class="faq-answer">
+                    Sí. Desde el 3.° año de secundaria, los planes curriculares integran módulos preuniversitarios intensivos en ciencias, matemáticas y humanidades, con simulacros periódicos tipo admisión.
+                </div>
             </div>
             <div class="faq-item">
-                <h5>¿Se toma examen de conocimientos para ingresar?</h5>
-                <p>Para Inicial y Primaria se evalúa el récord de notas y conducta del colegio anterior. Para Secundaria se complementa con una entrevista de diagnóstico formativo.</p>
+                <div class="faq-question">¿El colegio cuenta con talleres extracurriculares?</div>
+                <div class="faq-answer">
+                    Disponemos de talleres formativos de robótica, informática aplicada, banda de música, ajedrez, danza tradicional y disciplinas deportivas como fútbol y vóleibol.
+                </div>
             </div>
         </section>
+
     </main>
 
     <!-- Pie de Página Institucional -->
@@ -618,7 +749,7 @@
             <div class="footer-col">
                 <h4>I.E.P. San Ignacio de Loyola</h4>
                 <p>Institución privada comprometida con la formación de líderes con sólidos valores y excelencia académica en la provincia de Canchis.</p>
-                <p>R.D. USE-C-N° 214-2002</p>
+                <p style="color: var(--accent-gold); font-weight: 700;">R.D. USE-C-N° 214-2002</p>
             </div>
             <div class="footer-col">
                 <h4>Navegación Rápida</h4>

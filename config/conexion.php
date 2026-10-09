@@ -1,31 +1,14 @@
 <?php
-/**
- * Conexión a Base de Datos mediante PDO
- * Proyecto: Portal Web I.E.P. San Ignacio de Loyola
- */
-class Database {
-    private string $host = "localhost";
-    private string $db_name = "bd_san_ignacio";
-    private string $username = "root";
-    private string $password = "";
-    private string $charset = "utf8mb4";
-    public ?PDO $conn = null;
+$servidor   = "localhost";
+$usuario_bd = "root";
+$clave_bd   = "";
+$nombre_bd  = "bd_san_ignacio";
 
-    public function getConnection(): ?PDO {
-        $this->conn = null;
-        try {
-            $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=" . $this->charset;
-            $options = [
-                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES   => false, // Previene Inyección SQL nativamente
-            ];
-            $this->conn = new PDO($dsn, $this->username, $this->password, $options);
-        } catch (PDOException $e) {
-            error_log("Error de conexión a la BD: " . $e->getMessage());
-            die("Error temporal en el servidor. Por favor, intente más tarde.");
-        }
-        return $this->conn;
-    }
+try {
+    $pdo = new PDO("mysql:host=$servidor;dbname=$nombre_bd;charset=utf8mb4", $usuario_bd, $clave_bd);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error crítico de conexión a la base de datos: " . $e->getMessage());
 }
 ?>
