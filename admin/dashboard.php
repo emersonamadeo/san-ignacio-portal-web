@@ -11,8 +11,9 @@ $nombre_usuario = $_SESSION['usuario_nombre'] ?? 'Directivo';
 $rol_usuario = $_SESSION['usuario_rol'] ?? 'Administrador';
 
 $solicitudes = [];
+$mensajes_contacto = [];
 $total_solicitudes = 0;
-$total_noticias = 6;
+$total_mensajes = 0;
 $total_vacantes = 45;
 $db_error = "";
 
@@ -25,17 +26,22 @@ try {
     $pdo = new PDO("mysql:host=$servidor;dbname=$nombre_bd;charset=utf8mb4", $usuario_bd, $clave_bd);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Verificar si la tabla solicitudes_admision existe
+    // 1. Consultar Solicitudes de Admisión
     $stmt_check = $pdo->query("SHOW TABLES LIKE 'solicitudes_admision'");
     if ($stmt_check->rowCount() > 0) {
-        // Consultar todas las filas sin forzar ORDER BY id para no fallar por nombre de columna
         $stmt_sol = $pdo->query("SELECT * FROM solicitudes_admision");
-        $solicitudes = $stmt_sol->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Invertir el arreglo para mostrar los últimos registros primero
-        $solicitudes = array_reverse($solicitudes);
+        $solicitudes = array_reverse($stmt_sol->fetchAll(PDO::FETCH_ASSOC));
         $total_solicitudes = count($solicitudes);
     }
+
+    // 2. Consultar Mensajes de Contacto
+    $stmt_check_msg = $pdo->query("SHOW TABLES LIKE 'mensajes_contacto'");
+    if ($stmt_check_msg->rowCount() > 0) {
+        $stmt_msg = $pdo->query("SELECT * FROM mensajes_contacto");
+        $mensajes_contacto = array_reverse($stmt_msg->fetchAll(PDO::FETCH_ASSOC));
+        $total_mensajes = count($mensajes_contacto);
+    }
+
 } catch (PDOException $e) {
     $db_error = $e->getMessage();
 }
@@ -295,7 +301,7 @@ try {
             font-size: 2.4rem;
         }
 
-        /* Tabla de Solicitudes */
+        /* Tablas */
         .table-container {
             background: var(--surface);
             border-radius: 12px;
@@ -337,6 +343,7 @@ try {
             padding: 0.9rem 1rem;
             border-bottom: 1px solid var(--border);
             color: var(--text-dark);
+            vertical-align: top;
         }
 
         .data-table tr:hover {
@@ -351,6 +358,16 @@ try {
             display: inline-block;
             background-color: #fef3c7;
             color: #92400e;
+        }
+
+        .badge-contacto {
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0369a1;
         }
 
         @media (max-width: 900px) {
@@ -386,7 +403,7 @@ try {
             <li><a href="../index.html" target="_blank">🌐 Ver Sitio Web</a></li>
             <li><a href="../admision.html" target="_blank">📝 Módulo Admisión</a></li>
             <li><a href="../noticias.html" target="_blank">📰 Noticias Escolares</a></li>
-            <li><a href="../contacto.html" target="_blank">✉️ Mensajes y Consultas</a></li>
+            <li><a href="../contacto.html" target="_blank">✉️ Mensajes de Padres</a></li>
         </ul>
 
         <div class="sidebar-footer">
@@ -424,10 +441,18 @@ try {
             <section class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-info">
-                        <h4>Postulaciones Reales</h4>
+                        <h4>Postulaciones Admisión</h4>
                         <div class="metric-num"><?= $total_solicitudes ?></div>
                     </div>
                     <div class="metric-icon">📑</div>
+                </div>
+
+                <div class="metric-card blue">
+                    <div class="metric-info">
+                        <h4>Consultas de Padres</h4>
+                        <div class="metric-num"><?= $total_mensajes ?></div>
+                    </div>
+                    <div class="metric-icon">✉️</div>
                 </div>
 
                 <div class="metric-card gold">
@@ -436,14 +461,6 @@ try {
                         <div class="metric-num"><?= $total_vacantes ?></div>
                     </div>
                     <div class="metric-icon">🎒</div>
-                </div>
-
-                <div class="metric-card blue">
-                    <div class="metric-info">
-                        <h4>Artículos Web</h4>
-                        <div class="metric-num"><?= $total_noticias ?></div>
-                    </div>
-                    <div class="metric-icon">📢</div>
                 </div>
 
                 <div class="metric-card">
@@ -455,10 +472,55 @@ try {
                 </div>
             </section>
 
-            <!-- Tabla de Expedientes de Admisión -->
+            <!-- TABLA 1: Consultas y Mensajes de Contacto de Padres de Familia -->
             <section class="table-container">
                 <div class="table-header">
-                    <h3>Expedientes de Admisión y Matrícula Recientes</h3>
+                    <h3>✉️ Consultas y Mensajes Recibidos (Contacto)</h3>
+                    <a href="../contacto.html" target="_blank" style="color: var(--accent-blue); font-weight: 700; text-decoration: none; font-size: 0.9rem;">+ Enviar Mensaje</a>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>N.°</th>
+                            <th>Remitente</th>
+                            <th>Contacto</th>
+                            <th>Asunto</th>
+                            <th>Mensaje / Consulta</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($mensajes_contacto)): ?>
+                            <?php $c_msg = 1; ?>
+                            <?php foreach ($mensajes_contacto as $m): ?>
+                                <tr>
+                                    <td>#<?= $c_msg++ ?></td>
+                                    <td><strong><?= htmlspecialchars($m['nombre'] ?? 'Padre de Familia') ?></strong></td>
+                                    <td>
+                                        <?= htmlspecialchars($m['email'] ?? '') ?><br>
+                                        <small style="color: var(--accent-blue); font-weight: 700;"><?= htmlspecialchars($m['telefono'] ?? '-') ?></small>
+                                    </td>
+                                    <td><span class="badge-contacto"><?= htmlspecialchars($m['asunto'] ?? 'Consulta') ?></span></td>
+                                    <td style="max-width: 380px; font-size: 0.88rem;"><?= nl2br(htmlspecialchars($m['mensaje'] ?? '')) ?></td>
+                                    <td><span class="badge-status"><?= htmlspecialchars($m['estado'] ?? 'Pendiente') ?></span></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 1.8rem; color: var(--text-muted);">
+                                    No hay mensajes de contacto registrados todavía.
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- TABLA 2: Expedientes de Admisión y Matrícula -->
+            <section class="table-container">
+                <div class="table-header">
+                    <h3>📑 Expedientes de Admisión y Matrícula Recientes</h3>
                     <a href="../admision.html" target="_blank" style="color: var(--accent-blue); font-weight: 700; text-decoration: none; font-size: 0.9rem;">+ Nueva Postulación</a>
                 </div>
 
@@ -478,7 +540,6 @@ try {
                             <?php $contador = 1; ?>
                             <?php foreach ($solicitudes as $sol): ?>
                                 <?php
-                                    // Búsqueda tolerante de columnas para que nunca salga vacío
                                     $nombre_item = $sol['nombre_apoderado'] ?? $sol['nombre'] ?? $sol['apoderado'] ?? 'Sin nombre';
                                     $telefono_item = $sol['telefono'] ?? $sol['celular'] ?? $sol['email'] ?? $sol['correo'] ?? '-';
                                     $nivel_item = $sol['nivel_postulacion'] ?? $sol['nivel'] ?? 'Inicial';
@@ -496,7 +557,7 @@ try {
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                                <td colspan="6" style="text-align: center; padding: 1.8rem; color: var(--text-muted);">
                                     No se encontraron postulaciones registradas en la base de datos todavía.
                                 </td>
                             </tr>

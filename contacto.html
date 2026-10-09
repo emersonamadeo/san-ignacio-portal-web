@@ -667,12 +667,12 @@
         <!-- Bloque Dividido: Formulario y Ubicación Física -->
         <section class="contacto-layout">
 
-            <!-- Formulario de Contacto -->
+            <!-- Formulario de Contacto Conectado con Backend -->
             <div class="form-container">
                 <h3>Envíenos un Mensaje</h3>
                 <p>Escríbanos sus dudas pedagógicas, solicitudes de entrevista o información administrativa y le responderemos con prontitud.</p>
 
-                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('¡Gracias por comunicarse! Su mensaje ha sido enviado correctamente a secretaría.');">
+                <form action="contacto_proceso.php" method="POST">
                     <div class="form-group">
                         <label for="nombre">Nombres y Apellidos Completos *</label>
                         <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej. Rosa Quispe Valenzuela" required>
@@ -693,11 +693,11 @@
                         <label for="asunto">Motivo de Consulta *</label>
                         <select id="asunto" name="asunto" class="form-control" required>
                             <option value="" disabled selected>Seleccione una opción...</option>
-                            <option value="admision">Información de Vacantes y Admisión</option>
-                            <option value="academico">Consulta con Coordinación Académica</option>
-                            <option value="psicopedagogico">Cita con Psicología / Tutoría</option>
-                            <option value="certificados">Emisión de Certificados y Constancias</option>
-                            <option value="otro">Otras Consultas</option>
+                            <option value="Información de Admisión">Información de Vacantes y Admisión</option>
+                            <option value="Coordinación Académica">Consulta con Coordinación Académica</option>
+                            <option value="Tutoría y Psicología">Cita con Psicología / Tutoría</option>
+                            <option value="Certificados y Trámites">Emisión de Certificados y Constancias</option>
+                            <option value="Otras Consultas">Otras Consultas</option>
                         </select>
                     </div>
 
@@ -713,7 +713,6 @@
             <!-- Columna Lateral: Tarjeta con Imagen del Plantel -->
             <div>
                 <div class="ubicacion-card">
-                    <!-- Imagen de infraestructura y convivencia escolar -->
                     <img src="img/5656.jpg" alt="Instalaciones de la I.E.P. San Ignacio de Loyola en Sicuani" class="ubicacion-img"
                          onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80'">
                     <div class="ubicacion-body">
@@ -739,7 +738,7 @@
 
         </section>
 
-        <!-- Módulo de Normatividad y Transparencia en PDF -->
+        <!-- Módulo de Documentos Normativos (Transparencia en PDF) -->
         <section class="normas-box">
             <div class="normas-header">
                 <div>
@@ -752,7 +751,6 @@
             </div>
 
             <div class="normas-grid">
-                <!-- Documento 1 -->
                 <div class="doc-item">
                     <span class="doc-icon">📕</span>
                     <div class="doc-info">
@@ -762,7 +760,6 @@
                     </div>
                 </div>
 
-                <!-- Documento 2 -->
                 <div class="doc-item">
                     <span class="doc-icon">📘</span>
                     <div class="doc-info">
@@ -772,7 +769,6 @@
                     </div>
                 </div>
 
-                <!-- Documento 3 -->
                 <div class="doc-item">
                     <span class="doc-icon">📙</span>
                     <div class="doc-info">
@@ -782,7 +778,6 @@
                     </div>
                 </div>
 
-                <!-- Documento 4 -->
                 <div class="doc-item">
                     <span class="doc-icon">📗</span>
                     <div class="doc-info">
